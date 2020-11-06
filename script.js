@@ -33,6 +33,13 @@ function addTodo(todoTitle) {
     todo.classList.add("is-edit")
   })
 
+  todoElement.querySelector(".control_duplicate").addEventListener("click", event => {
+    const todo = event.target.closest(".todo")
+    const duplicatedTitle = todo.querySelector(".todo__title").textContent
+
+    addTodo(duplicatedTitle)
+  })
+
   todoList.append(todoElement)
 }
 
