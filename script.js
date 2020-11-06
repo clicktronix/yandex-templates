@@ -16,6 +16,14 @@ function addTodo(todoTitle) {
 
   todoElement.querySelector(".todo__title").textContent = todoTitle
 
+  todoElement.querySelector(".control_remove").addEventListener("click", event => {
+    const todo = event.target.closest(".todo")
+
+    if (todo) {
+      todo.remove()
+    }
+  })
+
   todoList.append(todoElement)
 }
 
