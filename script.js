@@ -18,32 +18,56 @@ function addTodo(todoTitle) {
 
   todoElement.querySelector(".todo__title").textContent = todoTitle
 
-  todoList.append(todoElement)
-}
-
-
-
-document.addEventListener("click", event => {
-  const target = event.target
-
-  if (target.classList.contains("control_remove")) {
+  todoElement.querySelector(".control_remove").addEventListener("click", event => {
     const todo = event.target.closest(".todo")
 
-    todo.remove()
-  } else if (target.classList.contains("control_edit")) {
+    if (todo) {
+      todo.remove()
+    }
+  })
+
+  todoElement.querySelector(".control_edit").addEventListener("click", event => {
     const todo = event.target.closest(".todo")
     const todoTitle = todo.querySelector(".todo__title").textContent
 
     todoForm.querySelector(".add-todo-form__field_input").value = todoTitle
 
     todo.classList.add("is-edit")
-  } else if (target.classList.contains("control_duplicate")) {
+  })
+
+  todoElement.querySelector(".control_duplicate").addEventListener("click", event => {
     const todo = event.target.closest(".todo")
     const duplicatedTitle = todo.querySelector(".todo__title").textContent
 
     addTodo(duplicatedTitle)
-  }
-})
+  })
+
+  todoList.append(todoElement)
+}
+
+
+
+// document.addEventListener("click", event => {
+//   const target = event.target
+
+//   if (target.classList.contains("control_remove")) {
+//     const todo = event.target.closest(".todo")
+
+//     todo.remove()
+//   } else if (target.classList.contains("control_edit")) {
+//     const todo = event.target.closest(".todo")
+//     const todoTitle = todo.querySelector(".todo__title").textContent
+
+//     todoForm.querySelector(".add-todo-form__field_input").value = todoTitle
+
+//     todo.classList.add("is-edit")
+//   } else if (target.classList.contains("control_duplicate")) {
+//     const todo = event.target.closest(".todo")
+//     const duplicatedTitle = todo.querySelector(".todo__title").textContent
+
+//     addTodo(duplicatedTitle)
+//   }
+// })
 
 
 
