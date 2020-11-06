@@ -24,6 +24,15 @@ function addTodo(todoTitle) {
     }
   })
 
+  todoElement.querySelector(".control_edit").addEventListener("click", event => {
+    const todo = event.target.closest(".todo")
+    const todoTitle = todo.querySelector(".todo__title").textContent
+
+    todoForm.querySelector(".add-todo-form__field_input").value = todoTitle
+
+    todo.classList.add("is-edit")
+  })
+
   todoList.append(todoElement)
 }
 
@@ -31,8 +40,15 @@ todoForm.addEventListener("submit", event => {
   event.preventDefault()
 
   const todoTitle = todoForm.querySelector(".add-todo-form__field_input").value
+  const editableTodo = document.querySelector(".is-edit")
 
-  addTodo(todoTitle)
+  if (editableTodo) {
+    editableTodo.querySelector(".todo__title").textContent = todoTitle
+
+    editableTodo.classList.remove("is-edit")
+  } else {
+    addTodo(todoTitle)
+  }
 
   todoForm.reset()
 })
