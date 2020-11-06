@@ -9,6 +9,7 @@ const initialTodos = [
 ]
 
 const todoList = document.querySelector(".todo-list")
+const todoForm = document.querySelector(".add-todo-form")
 
 function addTodo(todoTitle) {
   const todoElement = document.querySelector(".todo-template").content.cloneNode(true)
@@ -17,5 +18,15 @@ function addTodo(todoTitle) {
 
   todoList.append(todoElement)
 }
+
+todoForm.addEventListener("submit", event => {
+  event.preventDefault()
+
+  const todoTitle = todoForm.querySelector(".add-todo-form__field_input").value
+
+  addTodo(todoTitle)
+
+  todoForm.reset()
+})
 
 initialTodos.forEach(addTodo)
